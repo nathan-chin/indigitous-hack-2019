@@ -14,14 +14,12 @@
   <body>
     <div class="main">
         <nav class="menu-top">
-            <div class="dropdown">
-                <button onclick="myFunction()" class="dropbtn">Genesis</button>
-                <div id="myDropdown" class="dropdown-content">
-                    <a href="#">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                </div>
-            </div>
+            <select id='book' onchange="showChapters.call(this, event)">
+                <option>Select a book</option>
+            </select>
+            <select id='chapter'>
+                <option>Select a chapter</option>
+            </select>
         </nav>
         <nav class="menu-side">
 
