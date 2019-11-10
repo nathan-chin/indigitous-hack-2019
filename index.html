@@ -5,7 +5,7 @@
         <title>My test page</title>
         <link href="styles.css" rel="stylesheet">
     </head>
-    <body>
+    <body onload="draw();">
         <img src="https://blog.mozilla.org/opendesign/files/2018/07/firefox-logo-300x310.png" alt="Test descriptive text">
 
         <h1>Heading 1</h1>
@@ -15,11 +15,11 @@
         <p>What I like to eat:
         <ul>
             <li class="testclass">apples</li>
-            <li> bananas</li>
+            <li>bananas</li>
         </ul></p>
 
         <p class="testclass">
-            I am the swag master
+            <i>Jesus said to them, "Come and have breakfast." (John 21:12)</i>
         </p>
         <h4>Heading 4</h4>
         <h5>Heading 5</h5>
@@ -27,6 +27,8 @@
 
         <button>Change name</button>
         
+        <canvas id="tutorial" width="150" height="150"></canvas>
+
     </body>
     <script src="scripts/main.js"></script>
 </html>
