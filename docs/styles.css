@@ -4,6 +4,11 @@ html, body {
     overflow: hidden;
 }
 
+body {
+    background-color: #E0E0E0;
+    background-size: cover;
+}
+
 .main-container {
     background-color: #E0E0E0;
     background-size: cover;
@@ -50,12 +55,43 @@ html, body {
 }
 
 .bible-container {
-    width: 80vw;
+    width: 40vw;
+    width: 28rem;
     height: 80vh;
+    max-height: 39rem;
     background-color: #F8F8F8;
     align-self: center;
 }
+
+.text-container {
+    background-color: aquamarine;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.text {
+    background-color: bisque;
+    align-self: center;
+    width: 80%;
+    height: 80%;
+    font-size: 0.5em
+}
+
 .draggable {
     margin-top: 20rem;
     background-color: blanchedalmond;
 }
+
+#scale-element {
+    display: block;
+    max-width: 100%;
+    margin: auto;
+    touch-action: none;
+  }
+  
+  #scale-element.reset {
+    transition: -webkit-transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+  }

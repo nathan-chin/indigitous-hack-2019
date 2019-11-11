@@ -65,7 +65,7 @@ var BOOKS = {
 "Nehemiah":	13,
 "Esther": 10,
 "Job": 42,
-"Psalms": 150,
+"Psalm": 150,
 "Proverbs":	31,
 "Ecclesiastes":	12,
 "The Song of Solomon": 8,
@@ -115,21 +115,11 @@ var BOOKS = {
 "Revelation": 22,
 }
 
-var txt = '';
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function(){
-  if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
-    txt = xmlhttp.response;
-    console.log(txt)
-  }
-};
-xmlhttp.open("GET","../Bible",true);
-xmlhttp.send();
+var selectedBook = ""
 
 window.onload = function () {
     var bookDrop = document.getElementById('book')
     for (var i in BOOKS) {
-        console.log(i, BOOKS[i])
         var bEl = document.createElement("option")
         bEl.textContent = i;
         bEl.value = i;
@@ -141,14 +131,81 @@ function showChapters() {
     var bookDrop = document.getElementById('book').value
     var chapDrop = document.getElementById('chapter')
     var count = 0
-    chapDrop.options.length = 0
-    console.log("C:", chapDrop.childNodes)
+    chapDrop.options.length = 1
     while (count < BOOKS[bookDrop]) {
-        console.log("B:", chapDrop[count])
         var cEl = document.createElement("option")
         cEl.textContent = count + 1;
         cEl.value = count + 1;
         chapDrop.appendChild(cEl)
         count++
     }
+    selectedBook = bookDrop
+}
+
+function getChapter() {
+    var chapDrop = document.getElementById('chapter').value
+    var txt = '';
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function(){
+    if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
+        txt = xmlhttp.response;
+        //console.log(txt)
+        var tContainer = document.getElementById('text-here')
+        tContainer.removeChild(tContainer.childNodes[0])
+        var tEl = document.createElement("span")
+        tEl.textContent = txt
+        tContainer.appendChild(tEl)
+    }
+    };
+    xmlhttp.open("GET","../Bible/" + selectedBook.toUpperCase() + "/" + chapDrop + ".txt",true);
+    xmlhttp.send();
+}
+
+// #################################################################################
+
+var angleScale = {
+angle: 0,
+scale: 1
+}
+var gestureArea = document.getElementById('gesture-area')
+var scaleElement = document.getElementById('scale-element')
+var resetTimeout
+
+interact('.gesture-area')
+.gesturable({
+    onstart: function (event) {
+    angleScale.angle -= event.angle
+
+    clearTimeout(resetTimeout)
+    scaleElement.classList.remove('reset')
+    },
+    onmove: function (event) {
+    // document.body.appendChild(new Text(event.scale))
+    var currentAngle = event.angle + angleScale.angle
+    var currentScale = event.scale * angleScale.scale
+
+    scaleElement.style.webkitTransform =
+    scaleElement.style.transform =
+        'rotate(' + currentAngle + 'deg)' + 'scale(' + currentScale + ')'
+
+    // uses the dragMoveListener from the draggable demo above
+    dragMoveListener(event)
+    },
+    onend: function (event) {
+    angleScale.angle = angleScale.angle + event.angle
+    angleScale.scale = angleScale.scale * event.scale
+
+    resetTimeout = setTimeout(reset, 1000)
+    scaleElement.classList.add('reset')
+    }
+})
+.draggable({ onmove: dragMoveListener })
+
+function reset () {
+scaleElement.style.webkitTransform =
+    scaleElement.style.transform =
+    'scale(1)'
+
+angleScale.angle = 0
+angleScale.scale = 1
 }
