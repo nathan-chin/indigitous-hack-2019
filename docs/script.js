@@ -1,5 +1,6 @@
+/*
 // target elements with the "draggable" class
-interact('.main')
+interact('#gesture-area')
   .draggable({
     // enable inertial throwing
     inertia: true,
@@ -26,6 +27,7 @@ interact('.main')
           .toFixed(2) + 'px')
     }
   })
+*/
 
 function dragMoveListener (event) {
   var target = event.target
@@ -171,7 +173,7 @@ var gestureArea = document.getElementById('gesture-area')
 var scaleElement = document.getElementById('scale-element')
 var resetTimeout
 
-interact('.gesture-area')
+interact('#gesture-area')
 .gesturable({
     onstart: function (event) {
     angleScale.angle -= event.angle
