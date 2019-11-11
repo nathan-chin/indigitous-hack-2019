@@ -12,9 +12,8 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <div class="main">
         <nav class="menu-top">
-            <select id='book' onchange="showChapters.call(this, event)">
+            <select id='book' onchange="showChapters()">
                 <option>Select a book</option>
             </select>
             <select id='chapter'>
@@ -22,11 +21,13 @@
             </select>
         </nav>
         <nav class="menu-side">
-
         </nav>
-        <div class="bible-container">
-
+        <div class="main-container">
+            <div class="main">
+                <div class="bible-container">
+    
+                </div>
+            </div>
         </div>
-    </div>
   </body>
 </html>

@@ -1,5 +1,5 @@
 // target elements with the "draggable" class
-interact('.bible-container')
+interact('.main')
   .draggable({
     // enable inertial throwing
     inertia: true,
@@ -65,7 +65,7 @@ var BOOKS = {
 "Nehemiah":	13,
 "Esther": 10,
 "Job": 42,
-"Psalm": 150,
+"Psalms": 150,
 "Proverbs":	31,
 "Ecclesiastes":	12,
 "The Song of Solomon": 8,
@@ -120,7 +120,7 @@ var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function(){
   if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
     txt = xmlhttp.response;
-    //console.log(txt)
+    console.log(txt)
   }
 };
 xmlhttp.open("GET","../Bible",true);
@@ -139,15 +139,15 @@ window.onload = function () {
 
 function showChapters() {
     var bookDrop = document.getElementById('book').value
-    var chapDrop= document.getElementById('chapter')
-    var count = 1
-    for (var i = 0; i < chapDrop.options.length; i++) {
-        chapDrop.remove(i)
-    }
-    while (count <= BOOKS[bookDrop]) {
+    var chapDrop = document.getElementById('chapter')
+    var count = 0
+    chapDrop.options.length = 0
+    console.log("C:", chapDrop.childNodes)
+    while (count < BOOKS[bookDrop]) {
+        console.log("B:", chapDrop[count])
         var cEl = document.createElement("option")
-        cEl.textContent = count;
-        cEl.value = count;
+        cEl.textContent = count + 1;
+        cEl.value = count + 1;
         chapDrop.appendChild(cEl)
         count++
     }

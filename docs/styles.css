@@ -1,19 +1,30 @@
 html, body {
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
-body {
+.main-container {
+    background-color: #E0E0E0;
+    background-size: cover;
+    width: 120vw;
+    height: 120vh;
+    display: flex;
+    flex-direction: column;
+    margin: -5vh 0 0 -10vw;
+}
+
+.main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
     background-color: #E0E0E0;
     background-size: cover;
 }
 
-.main {
-    width: 100%;
-    min-height: 100%;
-    display: flex;
-    justify-content: center;
-}
 .menu-top {
     position: fixed;
     top: 0;
@@ -33,6 +44,7 @@ body {
     height: 50%;
     transform: translateY(-50%);
     width: 3rem;
+    z-index: 1000;
     background-color: #F8F8F8;
     box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 }
@@ -41,7 +53,7 @@ body {
     width: 80vw;
     height: 80vh;
     background-color: #F8F8F8;
-
+    align-self: center;
 }
 .draggable {
     margin-top: 20rem;
